@@ -1,0 +1,20 @@
+# 只有網站要呈現的東西會上傳到 GitHub。下面這些只留在自己的電腦上。
+
+# 安裝與建置產生的檔案
+node_modules/
+dist/
+.DS_Store
+
+# 內容的暫存檔、自動備份、範例內容（網站用的是 content/site.json，它要上傳）
+content/*.tmp
+content/backups/
+content/site.example.json
+
+# PDF 履歷：個人資料（名字、電話、照片）、版型程式、輸出的 PDF
+content/private/
+lib/cv.js
+output/
+
+# 本地編輯器與說明文件
+editor/
+README.md

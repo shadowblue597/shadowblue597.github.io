@@ -1,0 +1,438 @@
+:root {
+  --paper: #F5F8FA;
+  --ink: #1D2A32;
+  --muted: #5B6B75;
+  --sky: #8FD0EE;
+  --sky-hover: #A3D9F2;
+  --sky-pale: #D8EFFA;
+  --sky-ink: #12374A;
+  --link: #1A6890;
+  --rule: #D9E3E8;
+
+  --font: "Noto Sans TC", "Source Han Sans TC", "Noto Sans CJK TC", sans-serif;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+
+  /* 書籤 */
+  --tab-w: 54px;
+  --tab-h: 108px;
+  --edge: 32px;
+
+  /* 名稱與簡介 */
+  --intro-max: 36rem;
+  --side: calc(var(--edge) + var(--tab-w) + 1.5rem);
+  --name-size: 1.6rem;
+  --id-pt: 1.15rem;
+  --id-pb: 1rem;
+  --intro-gap: .45rem;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  letter-spacing: .02em;
+}
+a { color: var(--link); text-decoration-color: rgba(26, 104, 144, .35); text-underline-offset: .22em; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--sky-ink); outline-offset: 3px; border-radius: 2px; }
+
+/* ───────── 頂端（每頁共用、固定不動） ───────── */
+.masthead {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 30;
+  min-height: var(--tab-h);
+  background: var(--paper);
+  transition: box-shadow .2s;
+}
+.masthead.scrolled { box-shadow: 0 1px 0 var(--rule); }
+
+/* 名稱與簡介：在整頁寬度上置中，左右各讓出書籤的位置 */
+.identity {
+  max-width: calc(var(--intro-max) + 2 * var(--side));
+  margin: 0 auto;
+  padding: var(--id-pt) var(--side) var(--id-pb);
+  text-align: center;
+  transition: padding .35s var(--ease);
+}
+.site-name {
+  display: inline-block;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: var(--name-size);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: .01em;
+}
+.site-name:hover { color: var(--link); }
+
+.intro-wrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-top: var(--intro-gap);
+  transition: grid-template-rows .35s var(--ease), margin-top .35s var(--ease), opacity .25s;
+}
+.site-intro {
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+  font-size: .98rem;
+  line-height: 1.75;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+/* 往下捲：簡介收起，只留名稱，頂端縮回書籤的高度 */
+.masthead.scrolled .identity {
+  padding-top: calc((var(--tab-h) - var(--name-size) * 1.25) / 2);
+  padding-bottom: 0;
+}
+.masthead.scrolled .intro-wrap {
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+}
+
+/* 書籤按鈕 */
+.tab {
+  position: absolute;
+  top: 0;
+  right: var(--edge);
+  z-index: 2;
+  width: var(--tab-w);
+  height: var(--tab-h);
+  margin: 0;
+  border: 0;
+  padding: 16px 0 0;
+  background: var(--sky);
+  color: var(--sky-ink);
+  font: 700 1.1rem/1 var(--font);
+  letter-spacing: .25em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 16px), 0 100%);
+  transition: clip-path .35s var(--ease), background-color .2s;
+}
+.tab .label { display: block; writing-mode: vertical-rl; }
+.tab:hover { background: var(--sky-hover); }
+.tab[aria-expanded="true"] { clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%, 0 100%); }
+.tab:focus-visible { outline-offset: -5px; }
+
+/* 下拉選單：從書籤往下展開 */
+.panel {
+  position: absolute;
+  top: var(--tab-h);
+  right: var(--edge);
+  z-index: 1;
+  width: min(20rem, calc(100vw - 2 * var(--edge)));
+  max-height: calc(100vh - var(--tab-h) - 24px);
+  overflow-y: auto;
+  background: var(--sky);
+  color: var(--sky-ink);
+  padding: 1.3rem 1.6rem 3.4rem;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 50% 0, 0 0);
+  visibility: hidden;
+  transition: clip-path .5s var(--ease), visibility 0s linear .5s;
+}
+.panel.open {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 22px), 0 100%);
+  visibility: visible;
+  transition: clip-path .5s var(--ease), visibility 0s;
+}
+
+.menu, .menu ul { list-style: none; margin: 0; padding: 0; }
+.menu > li + li { border-top: 1px solid rgba(18, 55, 74, .16); }
+.menu > li > a,
+.menu > li > button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: .7rem .2rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: 700 1.2rem/1.4 var(--font);
+  letter-spacing: .06em;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu > li > a:hover,
+.menu > li > button:hover { color: #0A2433; }
+.menu > li > a[aria-current="page"]::after {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--sky-ink);
+}
+.caret {
+  width: 10px; height: 10px;
+  margin-right: .3rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform .3s var(--ease);
+}
+button[aria-expanded="true"] .caret { transform: translateY(2px) rotate(225deg); }
+
+.sub {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .35s var(--ease);
+}
+.sub > ul { overflow: hidden; }
+button[aria-expanded="true"] + .sub { grid-template-rows: 1fr; }
+.sub a {
+  display: block;
+  padding: .36rem .2rem .36rem 1.1rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 3px;
+}
+.sub a[aria-current="page"] { font-weight: 700; }
+.sub li:last-child a { margin-bottom: .6rem; }
+.sub a:hover { background: rgba(255, 255, 255, .38); }
+
+.panel-foot {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.4rem;
+  font-size: .95rem;
+}
+.panel-foot a { color: var(--sky-ink); text-decoration-color: rgba(18, 55, 74, .4); }
+
+/* ───────── 頁面內容 ───────── */
+/* 內容區塊在頁面上置中；區塊裡的文字靠左。
+   平板與手機是一欄；桌機（1024px 以上）放寬，履歷分兩欄、作品三個一排。 */
+.page {
+  max-width: calc(46rem + 3rem);
+  margin: 0 auto;
+  /* 上方留出「頂端完全展開」時的高度；--intro-h 由 menu.js 量出簡介實際高度 */
+  padding: calc(max(var(--tab-h), var(--id-pt) + var(--name-size) * 1.25 + var(--intro-gap) + var(--intro-h, 4rem) + var(--id-pb)) + 3rem)
+           1.5rem 6rem;
+}
+@media (min-width: 1024px) {
+  .page { max-width: calc(68rem + 4rem); padding-left: 2rem; padding-right: 2rem; }
+}
+section + section { margin-top: 5rem; }
+section h2 {
+  margin: 0 0 1.3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* 作品列表 */
+.entries { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--rule); }
+.entries li { padding: 1.05rem 0; border-top: 1px solid var(--rule); }
+.entries .title { font-size: 1.15rem; font-weight: 700; }
+.entries .title a { color: var(--ink); text-decoration: none; }
+.entries .title a:hover { color: var(--link); }
+.entries .excerpt { margin: .2rem 0 .35rem; }
+.entries .meta { display: flex; flex-wrap: wrap; gap: .35rem; font-size: .9rem; color: var(--muted); }
+@media (min-width: 1024px) {
+  .entries {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem 2.5rem;
+    border-bottom: 0;
+  }
+  .entries li { border-top: 2px solid var(--sky); padding-top: 1.1rem; }
+}
+.tag {
+  display: inline-block;
+  padding: 0 .55em;
+  border-radius: 3px;
+  background: var(--sky-pale);
+  color: var(--sky-ink);
+  font-size: .85rem;
+  line-height: 1.7;
+}
+.see-all { margin: 1.2rem 0 0; }
+
+/* 作品集：語言篩選 */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 0 1.4rem;
+}
+.chip {
+  padding: .15rem .8rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .92rem;
+}
+.chip:hover { border-color: var(--sky); }
+.chip[aria-current="true"] { background: var(--sky); border-color: var(--sky); color: var(--sky-ink); }
+.empty { color: var(--muted); }
+
+/* ───────── 履歷 ───────── */
+.lede { margin: 0 0 2.2rem; max-width: 40em; font-size: 1.1rem; }
+.lede p { margin: 0 0 .8rem; }
+.lede p:last-child { margin-bottom: 0; }
+
+/* 桌機兩欄：左欄學歷、經歷（寬），右欄技能、證照、興趣、聯絡（窄） */
+.cv-grid { display: grid; }
+@media (min-width: 1024px) {
+  .cv-grid {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    column-gap: 3.5rem;
+    align-items: start;
+  }
+}
+
+.cv-block {
+  padding: 1.2rem 0 1.7rem;
+  border-top: 1px solid var(--rule);
+}
+.cv-block h3 {
+  margin: 0 0 .85rem;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--sky-ink);
+}
+.cv { list-style: none; margin: 0; padding: 0; }
+.cv > li + li { margin-top: .9rem; }
+
+/* 一列：左邊名稱與說明，右邊年份 */
+.cv .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+.cv .what { display: block; flex: 1; min-width: 0; }
+.cv .what b { font-weight: 700; }
+.cv .name { display: block; }
+/* 經歷第二行的公司（單位）：天藍系深色、中等字重。想換樣式就改這一條 */
+.cv .org { display: block; font-size: .98rem; font-weight: 500; color: #2A7DAA; }
+/* 可以點開的列：名稱旁的小標籤，箭頭在展開時翻轉 */
+.more-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .35em;
+  margin-left: .6em;
+  padding: 0 .5em;
+  border-radius: 3px;
+  background: var(--sky-pale);
+  color: var(--sky-ink);
+  font-size: .78rem;
+  font-weight: 500;
+  line-height: 1.7;
+  vertical-align: .1em;
+}
+.chev {
+  width: 6px; height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .3s var(--ease);
+}
+.toggle[aria-expanded="true"] .chev { transform: translateY(1px) rotate(225deg); }
+.toggle[aria-expanded="true"] .more-tag { background: var(--sky); }
+.cv .detail { display: block; color: var(--muted); font-size: .95rem; line-height: 1.7; }
+.cv .note { display: block; margin-top: .15rem; color: var(--muted); font-size: .88rem; line-height: 1.7; }
+.cv .when {
+  flex: none;
+  color: var(--muted);
+  font-size: .92rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* 經歷的細節工作 */
+.duties { margin: .35rem 0 0; padding-left: 1.15em; font-size: .95rem; }
+.duties li + li { margin-top: .1rem; }
+.duties li::marker { color: var(--sky); }
+
+/* 可以點開的一列（經歷的專案、技能的熟練度） */
+.toggle {
+  width: calc(100% + 1.2rem);
+  margin: -.4rem -.6rem;
+  padding: .4rem .6rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.toggle:hover { background: rgba(143, 208, 238, .18); }
+
+.reveal { display: grid; grid-template-rows: 1fr; }
+.js .reveal { grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease); }
+.js .reveal.open { grid-template-rows: 1fr; }
+.reveal-inner { min-height: 0; overflow: hidden; }
+.reveal-body {
+  margin-top: .75rem;
+  padding: .9rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--sky);
+  border-radius: 0 6px 6px 0;
+}
+
+.proj + .proj { margin-top: .9rem; padding-top: .9rem; border-top: 1px dashed var(--rule); }
+.proj h4 { margin: 0 0 .2rem; font-size: 1rem; font-weight: 700; }
+
+.rich { font-size: .95rem; line-height: 1.75; }
+.rich.muted { color: var(--muted); }
+.rich p, .rich ul { margin: 0 0 .5rem; }
+.rich > :last-child { margin-bottom: 0; }
+.rich ul { padding-left: 1.15em; }
+
+/* 技能的熟練度 */
+.levels { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+.levels li { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: .95rem; }
+.stars { white-space: nowrap; letter-spacing: .12em; }
+.stars .on { color: #2E86B8; }
+.stars .off { color: #C9D6DD; }
+
+/* 證照 */
+.certs { list-style: none; margin: .1rem 0 0; padding: 0; color: var(--muted); font-size: .95rem; line-height: 1.75; }
+
+/* 聯絡 */
+.cv.contact > li + li { margin-top: .2rem; }
+.cv.contact .links { display: flex; flex-wrap: wrap; gap: .2rem 1.4rem; }
+
+footer.site { margin-top: 6rem; font-size: .9rem; color: var(--muted); }
+
+@media (max-width: 720px) {
+  :root {
+    --edge: 16px;
+    --tab-w: 46px;
+    --tab-h: 92px;
+    --side: calc(var(--edge) + var(--tab-w) + .75rem);
+    --name-size: 1.25rem;
+    --id-pt: .9rem;
+    --id-pb: .8rem;
+    --intro-gap: .3rem;
+  }
+  body { font-size: 1rem; }
+  .site-intro { font-size: .88rem; line-height: 1.7; }
+  .page { padding-left: 1.25rem; padding-right: 1.25rem; padding-bottom: 5rem; }
+  .panel { padding: 1.1rem 1.25rem 3.2rem; }
+  section + section { margin-top: 4rem; }
+  .cv .row { gap: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; }
+}

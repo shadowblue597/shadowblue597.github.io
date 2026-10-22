@@ -1,0 +1,153 @@
+{
+  "version": 4,
+  "site": {
+    "name": "柯智煌",
+    "intro": "您好，我是一位資料科學家兼AI工程師，也有在做數學的獨立研究。"
+  },
+  "about": {
+    "heading": "關於我",
+    "lede": ""
+  },
+  "education": [
+    {
+      "school": "國立成功大學",
+      "detail": "應用數學碩士",
+      "start": "2017",
+      "end": "2020",
+      "note": ""
+    },
+    {
+      "school": "中國文化大學",
+      "detail": "應用數學學士",
+      "start": "2012",
+      "end": "2017",
+      "note": ""
+    }
+  ],
+  "experience": [
+    {
+      "org": "連訊科技股份有限公司",
+      "role": "資深AI工程師",
+      "start": "2026.09",
+      "end": "",
+      "detail": "",
+      "duties": [],
+      "projects": [],
+      "pdf": "auto"
+    },
+    {
+      "org": "基士德科技股份有限公司",
+      "role": "資深AI工程師/資料科學家",
+      "start": "2025.11",
+      "end": "2026.09",
+      "detail": "",
+      "duties": [],
+      "projects": [],
+      "pdf": "auto"
+    },
+    {
+      "org": "泛科創新股份有限公司",
+      "role": "研發工程師",
+      "start": "2024.12",
+      "end": "2025.06",
+      "detail": "",
+      "duties": [],
+      "projects": [],
+      "pdf": "auto"
+    },
+    {
+      "org": "群創光電股份有限公司",
+      "role": "高級工程師",
+      "start": "2022.01",
+      "end": "2024.01",
+      "detail": "",
+      "duties": [],
+      "projects": [],
+      "pdf": "auto"
+    },
+    {
+      "org": "中央研究院 資訊科學研究所",
+      "role": "研究助理",
+      "start": "2021.06",
+      "end": "2021.12",
+      "detail": "",
+      "duties": [],
+      "projects": [],
+      "pdf": "auto"
+    }
+  ],
+  "skills": [
+    {
+      "title": "程式語言",
+      "items": [
+        {
+          "name": "Python",
+          "level": 5
+        },
+        {
+          "name": "C++",
+          "level": 2
+        },
+        {
+          "name": "Go",
+          "level": 0
+        },
+        {
+          "name": "Rust",
+          "level": 0
+        }
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Linux 系統管理",
+      "items": [
+        {
+          "name": "紅帽認證系統管理員（RHCSA）"
+        },
+        {
+          "name": "紅帽認證工程師（RHCE）"
+        }
+      ]
+    }
+  ],
+  "interests": [
+    {
+      "name": "閱讀",
+      "detail": ""
+    }
+  ],
+  "contact": {
+    "email": "shadowblue597@gmail.com",
+    "orcid": "",
+    "github": "https://github.com/shadowblue597"
+  },
+  "projects": [
+    {
+      "name": "analysis-toolkit",
+      "description": "用 Python 與 Plotly 寫的資料分析工具。",
+      "languages": [
+        "Python"
+      ],
+      "url": ""
+    },
+    {
+      "name": "sensor-logger",
+      "description": "讀取感測器數值並存成表格的小程式。",
+      "languages": [
+        "C++",
+        "C"
+      ],
+      "url": ""
+    },
+    {
+      "name": "personal-site",
+      "description": "這個網站本身的原始碼，用 Vite 建置。",
+      "languages": [
+        "網頁"
+      ],
+      "url": ""
+    }
+  ]
+}
