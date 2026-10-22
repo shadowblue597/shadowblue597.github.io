@@ -20,8 +20,16 @@ function siteContent() {
     transformIndexHtml: {
       order: 'pre',
       handler(html) {
-        const file = existsSync(contentFile) ? contentFile : exampleFile
-        return renderPlaceholders(html, readContent(file), { base })
+        const file = existsSync(contentFile) ? contentFile : existsSync(exampleFile) ? exampleFile : null
+        if (!file) {
+          throw new Error(
+            '找不到 content/site.json。請先在自己的電腦執行 npm run editor（會自動建立這個檔案），' +
+              '再把 content/site.json 一起 commit、push 到 GitHub。',
+          )
+        }
+        // 版型裡給「沒建置就被直接打開」時看的提示，建置時拿掉
+        const page = html.replace(/<!--\s*unbuilt\s*-->[\s\S]*?<!--\s*\/unbuilt\s*-->\s*/g, '')
+        return renderPlaceholders(page, readContent(file), { base })
       },
     },
     // 開發模式下改了內容檔，瀏覽器自動重新整理

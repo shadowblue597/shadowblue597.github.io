@@ -2,7 +2,9 @@ name: 部署網站
 
 on:
   push:
-    branches: [main]
+    # 預設分支叫 main 或 master 都會觸發
+    branches: [main, master]
+  # 可以在「動作」（Actions）分頁手動按 Run workflow 重新部署
   workflow_dispatch:
 
 permissions:
