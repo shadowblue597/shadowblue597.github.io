@@ -2,7 +2,7 @@
   "version": 4,
   "site": {
     "name": "柯智煌",
-    "intro": "您好，我是一位資料科學家兼AI工程師，也有在做數學的獨立研究。"
+    "intro": "您好，我是一位資料科學家兼AI工程師，歡迎參觀我的履歷網站。"
   },
   "about": {
     "heading": "關於我",
@@ -31,7 +31,11 @@
       "start": "2026.09",
       "end": "",
       "detail": "",
-      "duties": [],
+      "duties": [
+        "系統技術⽂件與流程節點撰寫AI",
+        "知識庫建⽴",
+        "平⾯結構圖解析"
+      ],
       "projects": [],
       "pdf": "auto"
     },
@@ -41,7 +45,28 @@
       "start": "2025.11",
       "end": "2026.09",
       "detail": "",
-      "duties": [],
+      "duties": [
+        "資料分析",
+        "機器學習",
+        "⾃動控制",
+        "酸鹼加藥Linux",
+        "系統配置",
+        "資訊安全",
+        "專案規劃",
+        "部⾨建置規劃"
+      ],
+      "projects": [],
+      "pdf": "auto"
+    },
+    {
+      "org": "國⽴陽明交通⼤學",
+      "role": "光⼦(矽光⼦&量⼦)與AI應⽤專業⼈才養成班",
+      "start": "2025.08",
+      "end": "2025.10",
+      "detail": "",
+      "duties": [
+        "學習半導體、光學、矽光⼦相關知識"
+      ],
       "projects": [],
       "pdf": "auto"
     },
@@ -51,9 +76,15 @@
       "start": "2024.12",
       "end": "2025.06",
       "detail": "",
-      "duties": [],
+      "duties": [
+        "AI流程⾃動化",
+        "協助AI頻道創建",
+        "其他類型頻道輔助⼯具開發",
+        "AI⼯具導⼊",
+        "AI⼯具測試"
+      ],
       "projects": [],
-      "pdf": "auto"
+      "pdf": "full"
     },
     {
       "org": "群創光電股份有限公司",
@@ -61,9 +92,16 @@
       "start": "2022.01",
       "end": "2024.01",
       "detail": "",
-      "duties": [],
+      "duties": [
+        "資料⾃動化處理",
+        "資料定期上傳",
+        "⽣產資訊顯⽰看板",
+        "資料分析",
+        "⼯廠製程⾃動化",
+        "其他輔助軟體開發"
+      ],
       "projects": [],
-      "pdf": "auto"
+      "pdf": "full"
     },
     {
       "org": "中央研究院 資訊科學研究所",
@@ -71,9 +109,14 @@
       "start": "2021.06",
       "end": "2021.12",
       "detail": "",
-      "duties": [],
+      "duties": [
+        "深度壓縮感知的研究，主要側重ISTA-Net與AMP-Net相關延伸",
+        "⽣成對抗式模型（GAN）的研究，以Style-GAN系列的延伸為主",
+        "深度⽣成模型的研究，包含diffusion model, Score-based model",
+        "⼩波分析的應⽤研究，以改造深度學習模型的層為主"
+      ],
       "projects": [],
-      "pdf": "auto"
+      "pdf": "full"
     }
   ],
   "skills": [
@@ -85,16 +128,110 @@
           "level": 5
         },
         {
-          "name": "C++",
+          "name": "C",
           "level": 2
         },
         {
+          "name": "C++",
+          "level": 3
+        },
+        {
           "name": "Go",
-          "level": 0
+          "level": 1
         },
         {
           "name": "Rust",
-          "level": 0
+          "level": 1
+        },
+        {
+          "name": "Latex",
+          "level": 5
+        },
+        {
+          "name": "Matlab",
+          "level": 3
+        },
+        {
+          "name": "Markdown",
+          "level": 5
+        },
+        {
+          "name": "VBA",
+          "level": 3
+        },
+        {
+          "name": "Google Apps Script",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "title": "AI",
+      "items": [
+        {
+          "name": "機器學習",
+          "level": 4
+        },
+        {
+          "name": "深度學習",
+          "level": 5
+        },
+        {
+          "name": "語言模型",
+          "level": 3
+        },
+        {
+          "name": "LangChain",
+          "level": 4
+        },
+        {
+          "name": "LangGraph",
+          "level": 3
+        },
+        {
+          "name": "LangFlow",
+          "level": 2
+        },
+        {
+          "name": "PyTorch",
+          "level": 4
+        },
+        {
+          "name": "Tensorflow",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "title": "其他",
+      "items": [
+        {
+          "name": "數值分析",
+          "level": 5
+        },
+        {
+          "name": "Docker",
+          "level": 4
+        },
+        {
+          "name": "Linux",
+          "level": 4
+        },
+        {
+          "name": "n8n",
+          "level": 3
+        },
+        {
+          "name": "Microsoft Office",
+          "level": 5
+        },
+        {
+          "name": "AI代理人工程",
+          "level": 4
+        },
+        {
+          "name": "Vibe Coding",
+          "level": 3
         }
       ]
     }
@@ -104,10 +241,37 @@
       "title": "Linux 系統管理",
       "items": [
         {
-          "name": "紅帽認證系統管理員（RHCSA）"
+          "name": "Red Hat Certified System Administrator, RHCSA"
         },
         {
-          "name": "紅帽認證工程師（RHCE）"
+          "name": "Red Hat Certified Engineer, RHCE"
+        }
+      ]
+    },
+    {
+      "title": "AI",
+      "items": [
+        {
+          "name": "iPAS AI應用規劃師 初級"
+        },
+        {
+          "name": "iPAS AI應用規劃師 中級"
+        }
+      ]
+    },
+    {
+      "title": "資訊安全",
+      "items": [
+        {
+          "name": "iPAS 資訊安全工程師 中級"
+        }
+      ]
+    },
+    {
+      "title": "ESG",
+      "items": [
+        {
+          "name": "iPAS 淨零碳規劃管理師 初級"
         }
       ]
     }
@@ -115,6 +279,26 @@
   "interests": [
     {
       "name": "閱讀",
+      "detail": "工具書、科普書、小說"
+    },
+    {
+      "name": "研究分析",
+      "detail": "數學、深度學習、物理、表觀遺傳學、行為經濟學"
+    },
+    {
+      "name": "寫作",
+      "detail": ""
+    },
+    {
+      "name": "遊戲",
+      "detail": ""
+    },
+    {
+      "name": "動漫",
+      "detail": ""
+    },
+    {
+      "name": "魔術方塊",
       "detail": ""
     }
   ],
@@ -125,29 +309,76 @@
   },
   "projects": [
     {
-      "name": "analysis-toolkit",
-      "description": "用 Python 與 Plotly 寫的資料分析工具。",
+      "name": "shadowblue597.github.io",
+      "description": "這個網站的原始碼",
+      "languages": [
+        "Vite"
+      ],
+      "url": "https://github.com/shadowblue597/shadowblue597.github.io"
+    },
+    {
+      "name": "AirBoard",
+      "description": "使用攝影機，可以讓使用者使用鏡頭在畫面上寫字",
       "languages": [
         "Python"
       ],
-      "url": ""
+      "url": "https://github.com/shadowblue597/AirBoard"
     },
     {
-      "name": "sensor-logger",
-      "description": "讀取感測器數值並存成表格的小程式。",
+      "name": "Parasitic-Data-Transfer-Protocol",
+      "description": "用於傳輸資料用的TCP協定改寫",
       "languages": [
-        "C++",
-        "C"
+        "Python"
       ],
-      "url": ""
+      "url": "https://github.com/shadowblue597/Parasitic-Data-Transfer-Protocol"
     },
     {
-      "name": "personal-site",
-      "description": "這個網站本身的原始碼，用 Vite 建置。",
+      "name": "MineSweeper",
+      "description": "復刻Windows 10上的踩地雷遊戲",
       "languages": [
-        "網頁"
+        "Python"
       ],
-      "url": ""
+      "url": "https://github.com/shadowblue597/MineSweeper"
+    },
+    {
+      "name": "Quick-Macro",
+      "description": "電腦操作巨集工具，可以錄製與回放鍵盤與滑鼠操作的巨集",
+      "languages": [
+        "Python"
+      ],
+      "url": "https://github.com/shadowblue597/Quick-Macro"
+    },
+    {
+      "name": "LangChain-Novel-Generator",
+      "description": "使用多代理人模式，以LangChain做成的小說生成器",
+      "languages": [
+        "Python"
+      ],
+      "url": "https://github.com/shadowblue597/LangChain-Novel-Generator"
+    },
+    {
+      "name": "ISTA-Net-PyTorch",
+      "description": "利用PyTorch實作ISTA-Net的論文",
+      "languages": [
+        "Python"
+      ],
+      "url": "https://github.com/shadowblue597/ISTA-Net-PyTorch"
+    },
+    {
+      "name": "AMP-Net-PyTorch",
+      "description": "利用PyTorch實作AMP-Net的論文",
+      "languages": [
+        "Python"
+      ],
+      "url": "https://github.com/shadowblue597/AMP-Net-PyTorch"
+    },
+    {
+      "name": "StyleGAN-PyTorch",
+      "description": "利用PyTorch實作StyleGAN系列的論文",
+      "languages": [
+        "Python"
+      ],
+      "url": "https://github.com/shadowblue597/StyleGAN-PyTorch"
     }
   ]
 }
